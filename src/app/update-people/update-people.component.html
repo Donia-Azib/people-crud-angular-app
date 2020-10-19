@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div class="container my-5">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-dark my-3" [routerLink]="['/people-list']" >Back</button>
+      <hr>
+      <h1>Update User Informations</h1>
+    </div>
+  </div>
+    <br>
+    <form [formGroup]="myForm" (ngSubmit)="updateUser()">
+      <div class="form-row">
+          <div class="form-group col">
+            <label for="firstname">First Name</label>
+            <input formControlName="firstname" type="text" class="form-control" id="firstname" >
+            <div *ngIf="firstname.touched && firstname.invalid">
+              <small class="form-text text-danger" *ngIf="firstname.errors.required">First name is required <br></small>
+              <small class="form-text text-danger" *ngIf="firstname.errors.minlength">First name should have a least {{ firstname.errors.minlength.requiredLength }} characters <br></small>
+              <small class="form-text text-danger" *ngIf="firstname.errors.pattern">First name pattern is invalid <br></small>
+            </div>
+          </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col">
+              <label for="lastname">Last Name</label>
+              <input formControlName="lastname" type="text" class="form-control" id="lastname">
+              <div *ngIf="lastname.touched && lastname.invalid">
+                <small class="form-text text-danger" *ngIf="lastname.errors.required">last name is required <br></small>
+                <small class="form-text text-danger" *ngIf="lastname.errors.minlength">last name should have a least {{ lastname.errors.minlength.requiredLength }} characters <br></small>
+                <small class="form-text text-danger" *ngIf="lastname.errors.pattern">last name pattern is invalid <br></small>
+              </div> 
+          </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col">
+              <label for="exampleInputEmail1">Email address</label>
+              <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div *ngIf="email.touched && email.invalid">
+                <small class="form-text text-danger" *ngIf="email.errors.required">Email is required <br></small>
+                <small class="form-text text-danger" *ngIf="email.errors.pattern">Email pattern is invalid <br></small>
+              </div> 
+          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <button type="submit" class="btn btn-warning" [disabled]="myForm.invalid">Update</button>
+        </div>
+      </div>
+      </form>
+</div>
+<app-footer></app-footer>

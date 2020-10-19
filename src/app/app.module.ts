@@ -9,6 +9,13 @@ import { RegisterComponent } from './register/register.component';
 import { PeopleListComponent } from './people-list/people-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { Page404Component } from './page404/page404.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddPeopleComponent } from './add-people/add-people.component';
+import { UpdatePeopleComponent } from './update-people/update-people.component';
+
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -18,11 +25,18 @@ import { FooterComponent } from './footer/footer.component';
     RegisterComponent,
     PeopleListComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    Page404Component,
+    AddPeopleComponent,
+    UpdatePeopleComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ToastNoAnimationModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

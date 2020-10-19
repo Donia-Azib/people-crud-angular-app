@@ -1,1 +1,50 @@
-<p>people-list works!</p>
+<app-navbar></app-navbar>
+<div class="content">
+    <h1>People List</h1>
+    <br>
+    <button class="btn btn-primary" [routerLink]="['/add-people']" >Add</button>
+    <br><br>
+    <div class="alert alert-warning" role="alert" *ngIf="peopleList.length == 0">
+        No people found !
+    </div>
+    <div class="container">
+        <table class="table" *ngIf="peopleList.length > 0">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">#</th>
+            </tr>
+            </thead>
+            <tbody>
+                <!-- <tr *ngFor="let people of peopleList">
+                    <th scope="row">{{peopleList.indexOf(people)+1}}</th>
+                    <td>{{people.firstname}}</td>
+                    <td>{{people.lastname}}</td>
+                    <td>{{people.phone}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">Details</button>
+                        <button type="button" class="btn btn-danger mx-3" (click)='delete(people)'>Delete</button>
+                        <button type="button" class="btn btn-warning">Update</button>
+                    </td>
+                </tr> -->
+            
+                <tr *ngFor="let people of myPeopleList">
+                    <th scope="row">{{myPeopleList.indexOf(people)+1}}</th>
+                    <td>{{people.firstname}}</td>
+                    <td>{{people.lastname}}</td>
+                    <td>{{people.email}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">Details</button>
+                        <button type="button" class="btn btn-danger mx-3" (click)='delete(people)'>Delete</button>
+                        <button type="button" class="btn btn-warning" [routerLink]="['/update-people',people._id]">Update</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<app-footer></app-footer>
