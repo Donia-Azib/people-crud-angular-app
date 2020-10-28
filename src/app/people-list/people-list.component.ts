@@ -1,6 +1,10 @@
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { error } from 'protractor';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AngularModalComponent } from '../angular-modal/angular-modal.component';
+import { User } from '../user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-people-list',
@@ -30,7 +34,8 @@ export class PeopleListComponent implements OnInit {
     }
   ];
   myPeopleList=[];
-  constructor(private service:UserService) { }
+  constructor(private service:UserService,private modalService: NgbModal
+    ,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.service.getAllUser().subscribe(
@@ -50,15 +55,21 @@ export class PeopleListComponent implements OnInit {
     if (index > -1) {
       this.myPeopleList.splice(index, 1);
 
-    this.service.deleteUser(people._id).subscribe(
+    this.service.deleteUser(people.id).subscribe(
       result=>{
+        this.toastr.success('User delted successfully....');
         console.log(result);
       },
       error=>{
         console.log(error);
+        this.toastr.error('User delete failed....');
       }
     );
   }
+  }
+  open(user:User) {
+    const modalRef = this.modalService.open(AngularModalComponent);
+    modalRef.componentInstance.user = user;
   }
 
 }

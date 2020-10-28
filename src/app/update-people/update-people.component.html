@@ -10,7 +10,7 @@
     <br>
     <form [formGroup]="myForm" (ngSubmit)="updateUser()">
       <div class="form-row">
-          <div class="form-group col">
+          <div class="form-group col-md-6">
             <label for="firstname">First Name</label>
             <input formControlName="firstname" type="text" class="form-control" id="firstname" >
             <div *ngIf="firstname.touched && firstname.invalid">
@@ -19,9 +19,8 @@
               <small class="form-text text-danger" *ngIf="firstname.errors.pattern">First name pattern is invalid <br></small>
             </div>
           </div>
-      </div>
-      <div class="form-row">
-          <div class="form-group col">
+      
+          <div class="form-group col-md-6">
               <label for="lastname">Last Name</label>
               <input formControlName="lastname" type="text" class="form-control" id="lastname">
               <div *ngIf="lastname.touched && lastname.invalid">
@@ -31,6 +30,7 @@
               </div> 
           </div>
       </div>
+
       <div class="form-row">
           <div class="form-group col">
               <label for="exampleInputEmail1">Email address</label>
@@ -41,6 +41,19 @@
               </div> 
           </div>
       </div>
+
+      <div class="form-row">
+        <div class="form-group col">
+            <label for="phone">Phone</label>
+            <input formControlName="phone" type="tel" class="form-control" id="phone">
+            <div *ngIf="phone.touched && phone.invalid">
+              <small class="form-text text-danger" *ngIf="phone.errors.required">phone is required <br></small>
+              <small class="form-text text-danger" *ngIf="phone.errors.pattern">phone pattern is invalid <br></small>
+              <small class="form-text text-danger" *ngIf="phone.errors.minlength">phone should have a least {{ phone.errors.minlength.requiredLength }} characters <br></small>
+            </div> 
+        </div>
+      </div>
+      
       <div class="form-row">
         <div class="form-group col">
           <button type="submit" class="btn btn-warning" [disabled]="myForm.invalid">Update</button>

@@ -11,7 +11,29 @@
     <br>
     <form [formGroup]="myForm" (ngSubmit)="saveUser()">
       <div class="form-row">
-        <div class="form-group col">
+        <div class="input-group col-md-10">
+          <div class="custom-file">
+            <!-- .target.files  formControlName="importFile" id="importFile" -->
+            <input type="file" class="custom-file-input" 
+           (change)="onFileChange($event)"> 
+
+            <label class="custom-file-label" 
+            #labelImport for="importFile" *ngIf="fileToUpload != null">
+            <i class="fas fa-search"></i>{{fileToUpload.name}}</label>
+
+            <label class="custom-file-label" 
+            #labelImport for="importFile" *ngIf="fileToUpload == null">
+            <i class="fas fa-search"></i>Choose file</label>
+          </div>
+        </div>
+        
+        <div class="form-group col-md-2">
+          <button class="btn btn-outline-secondary" type="button" (click)="import()"><i class="fas fa-file-import"></i> Importer</button>
+        </div>
+       </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
           <label for="firstname">First Name</label>
           <input formControlName="firstname" type="text" class="form-control" id="firstname" >
           <div *ngIf="firstname.touched && firstname.invalid">
@@ -20,9 +42,9 @@
             <small class="form-text text-danger" *ngIf="firstname.errors.pattern">First name pattern is invalid <br></small>
           </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col">
+    <!-- </div> -->
+    <!-- <div class="form-row"> -->
+        <div class="form-group col-md-6">
             <label for="lastname">Last Name</label>
             <input formControlName="lastname" type="text" class="form-control" id="lastname">
             <div *ngIf="lastname.touched && lastname.invalid">
@@ -33,7 +55,7 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col">
+        <div class="form-group col-md-6">
             <label for="exampleInputEmail1">Email address</label>
             <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             <div *ngIf="email.touched && email.invalid">
@@ -41,6 +63,17 @@
               <small class="form-text text-danger" *ngIf="email.errors.pattern">Email pattern is invalid <br></small>
             </div> 
         </div>
+
+        <div class="form-group col-md-6">
+          <label for="phone">Phone</label>
+          <input formControlName="phone" type="tel" class="form-control" id="phone">
+          <div *ngIf="phone.touched && phone.invalid">
+            <small class="form-text text-danger" *ngIf="phone.errors.required">phone is required <br></small>
+            <small class="form-text text-danger" *ngIf="phone.errors.pattern">phone pattern is invalid <br></small>
+            <small class="form-text text-danger" *ngIf="phone.errors.minlength">phone should have a least {{ phone.errors.minlength.requiredLength }} characters <br></small>
+          </div> 
+      </div>
+
     </div>
     <br>
       <div class="form-row">

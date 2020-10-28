@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-people',
@@ -14,7 +14,7 @@ export class UpdatePeopleComponent implements OnInit {
   myForm : FormGroup;
   
   constructor(private fb:FormBuilder,private route:ActivatedRoute,
-    private service:UserService,private router:Router) {
+    private service:UserService,private router:Router,private toastr: ToastrService) {
     let formControls =
     {
       firstname : new FormControl('',[
@@ -27,6 +27,11 @@ export class UpdatePeopleComponent implements OnInit {
         Validators.pattern("[a-z . '-]+"),
         Validators.minLength(3)
       ]),
+      phone : new FormControl('',[
+        Validators.required,
+        Validators.pattern("[0-9]+"),
+        Validators.minLength(8)
+      ]), 
       email : new FormControl('',[
         Validators.required,
         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
@@ -48,10 +53,14 @@ export class UpdatePeopleComponent implements OnInit {
   {
     return this.myForm.get('email');
   }
-
+  get phone()
+  {
+    return this.myForm.get('phone');
+  }
   
 
   ngOnInit():void {
+
     let idUser = this.route.snapshot.params.id;
     console.log(idUser);
     this.service.getOneUser(idUser).subscribe(
@@ -60,7 +69,8 @@ export class UpdatePeopleComponent implements OnInit {
           this.myForm.patchValue({
             firstname : user.firstname,
             lastname : user.lastname,
-            email : user.email
+            email : user.email,
+            phone : user.phone
           });
         },
         error=>
@@ -77,15 +87,16 @@ export class UpdatePeopleComponent implements OnInit {
     console.log(this.myForm.value);
     let data = this.myForm.value;
     let idUser = this.route.snapshot.params.id;
-    let user = new User(data.firstname,data.lastname,data.email,null,idUser);
+    let user = new User(data.firstname,data.lastname,data.email,null,idUser,data.phone);
     this.service.updateUser(user).subscribe(
       res=>{
+        this.toastr.success('User updated successfully....');
         this.router.navigate(['/people-list']);
       },
       error=>
       {
         console.log(error);
-        
+        this.toastr.error('User update failed....');
       }
     );
     

@@ -1,0 +1,23 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap'); */
+.title
+{
+    color: teal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header
+{
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: unset;
+    font-weight: bold;
+}
+
+
+p
+{
+   /* font-family: 'Pacifico', cursive; */
+   /* font-family: 'Gloria Hallelujah', cursive; */
+   font-family: 'Montserrat Alternates', sans-serif;
+}

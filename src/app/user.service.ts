@@ -6,11 +6,25 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrlGetAll="https://backend-people-crud-app.herokuapp.com/users";
-  private apiUrlGetOneUser="https://backend-people-crud-app.herokuapp.com/users/";
-  private apiUrlDelete="https://backend-people-crud-app.herokuapp.com/users/"
-  private apiUrlAdd="https://backend-people-crud-app.herokuapp.com/users/add";
-  private apiUrlUpdate="https://backend-people-crud-app.herokuapp.com/users/update";
+ 
+  // private apiUrlGetAll="https://backend-people-crud-app.herokuapp.com/users";
+  private apiUrlGetAll="http://localhost:8080/application/members";
+ 
+ 
+  // private apiUrlGetOneUser="https://backend-people-crud-app.herokuapp.com/users/";
+  private apiUrlGetOneUser="http://0.0.0.0:8080/application/member/";
+
+
+  // private apiUrlDelete="https://backend-people-crud-app.herokuapp.com/users/"
+  private apiUrlDelete="http://0.0.0.0:8080/application/member/delete/"
+
+  // private apiUrlAdd="https://backend-people-crud-app.herokuapp.com/users/add";
+  private apiUrlAdd="http://localhost:8080/application/member/add";
+
+
+  // private apiUrlUpdate="https://backend-people-crud-app.herokuapp.com/users/update";
+  private apiUrlUpdate="http://0.0.0.0:8080/application/member/update";
+
   private apiUrlRegister="https://backend-people-crud-app.herokuapp.com/users/register";
   private apiUrlLogin="https://backend-people-crud-app.herokuapp.com/users/login";
 
@@ -22,7 +36,7 @@ export class UserService {
     return data;
  }
 
- getOneUser(id:String){
+ getOneUser(id:any){
   return this.http.get<any>(this.apiUrlGetOneUser+id);
 }
 

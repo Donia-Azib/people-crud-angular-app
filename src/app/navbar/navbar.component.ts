@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  imageURL="assets/images/logo.png";
+  imageURL="assets/images/club_logo.png";
   isLogged:Boolean;
   constructor(private service:UserService,private router:Router) { }
 

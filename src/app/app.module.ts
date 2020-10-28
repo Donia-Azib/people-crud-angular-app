@@ -14,8 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddPeopleComponent } from './add-people/add-people.component';
 import { UpdatePeopleComponent } from './update-people/update-people.component';
+import { AngularModalComponent } from './angular-modal/angular-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastNoAnimationModule } from 'ngx-toastr';
 
-import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toas
     FooterComponent,
     Page404Component,
     AddPeopleComponent,
-    UpdatePeopleComponent
+    UpdatePeopleComponent,
+    AngularModalComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +39,13 @@ import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toas
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModule,
     ToastNoAnimationModule.forRoot(),
   ],
   providers: [],
+  entryComponents: [
+    AngularModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
