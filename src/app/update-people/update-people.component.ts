@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-people',
@@ -14,7 +15,8 @@ export class UpdatePeopleComponent implements OnInit {
   myForm : FormGroup;
   
   constructor(private fb:FormBuilder,private route:ActivatedRoute,
-    private service:UserService,private router:Router,private toastr: ToastrService) {
+    private service:UserService,private router:Router,private toastr: ToastrService,
+    private translator:TranslateService) {
     let formControls =
     {
       firstname : new FormControl('',[
@@ -29,7 +31,7 @@ export class UpdatePeopleComponent implements OnInit {
       ]),
       phone : new FormControl('',[
         Validators.required,
-        Validators.pattern("[0-9]+"),
+        Validators.pattern('(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})'),
         Validators.minLength(8)
       ]), 
       email : new FormControl('',[
@@ -60,7 +62,7 @@ export class UpdatePeopleComponent implements OnInit {
   
 
   ngOnInit():void {
-
+    this.translator.use(localStorage.getItem("lang") || 'en')
     let idUser = this.route.snapshot.params.id;
     console.log(idUser);
     this.service.getOneUser(idUser).subscribe(
@@ -87,7 +89,9 @@ export class UpdatePeopleComponent implements OnInit {
     console.log(this.myForm.value);
     let data = this.myForm.value;
     let idUser = this.route.snapshot.params.id;
-    let user = new User(data.firstname,data.lastname,data.email,null,idUser,data.phone);
+    console.log("user id "+idUser);
+    
+    let user = new User(data.firstname,data.lastname,data.email,idUser,data.phone);
     this.service.updateUser(user).subscribe(
       res=>{
         this.toastr.success('User updated successfully....');

@@ -8,9 +8,10 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
  
   // private apiUrlGetAll="https://backend-people-crud-app.herokuapp.com/users";
-  private apiUrlGetAll="http://localhost:8080/application/members";
+  private apiUrlGetAllMember="http://localhost:8080/application/members";
  
- 
+  private apiUrlGetAll="http://localhost:8080/application/members/";
+
   // private apiUrlGetOneUser="https://backend-people-crud-app.herokuapp.com/users/";
   private apiUrlGetOneUser="http://0.0.0.0:8080/application/member/";
 
@@ -32,9 +33,15 @@ export class UserService {
 
   //get all user from api : json placeholder
  getAllUser(){
-    let data = this.http.get<any>(this.apiUrlGetAll);
+    let data = this.http.get<any>(this.apiUrlGetAllMember);
     return data;
  }
+
+ getAll(page:number){
+  let data = this.http.get<any>(this.apiUrlGetAll+page);
+  return data;
+}
+
 
  getOneUser(id:any){
   return this.http.get<any>(this.apiUrlGetOneUser+id);

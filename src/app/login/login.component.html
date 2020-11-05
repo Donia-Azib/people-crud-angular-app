@@ -3,7 +3,7 @@
     <form [formGroup]="myForm" (ngSubmit)="login()">
       <div class="form-row">
         <div class="form-group col">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="exampleInputEmail1">{{'PEOPLE-LIST.email' | translate}}</label>
             <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             <div *ngIf="email.touched && email.invalid">
               <small class="form-text text-danger" *ngIf="email.errors.required">Email is required <br></small>
@@ -14,7 +14,7 @@
 
       <div class="form-row">
         <div class="form-group col">
-          <label for="exampleInputPassword1">Password</label>
+          <label for="exampleInputPassword1">{{'PEOPLE-LIST.password' | translate}}</label>
           <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
           <div *ngIf="password.touched && password.invalid">
             <small class="form-text text-danger" *ngIf="password.errors.required">password is required <br></small>
@@ -25,7 +25,7 @@
 
       <div class="form-row">
         <div class="form-group col">
-          <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Login</button>
+          <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">{{'BTN.loginBtn' | translate}}</button>
         </div>
       </div>
 

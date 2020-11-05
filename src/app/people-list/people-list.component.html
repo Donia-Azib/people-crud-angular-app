@@ -1,50 +1,69 @@
 <app-navbar></app-navbar>
 <div class="content">
-    <h1>Android Member List</h1>
+    <h1>{{'TITLE.listName' | translate}}</h1>
     <br>
-    <button class="btn btn-primary md" [routerLink]="['/add-people']" >Add</button>
-    <br><br>
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <button class="btn btn-primary md" [routerLink]="['/add-people']" >{{'BTN.addBtn' | translate}}</button>
+        </div>
+        <div class="form-group col-md-4">
+            <input type="text" class="form-control" 
+            name="firstname" 
+            [(ngModel)]="firstname" 
+            (ngModelChange)="search()"
+            placeholder="{{'BTN.searchBTN' | translate}}">
+        </div>
+    </div>
+
+    <br>
+
     <div class="alert alert-warning" role="alert" *ngIf="myPeopleList.length == 0">
-        No member found !
+        {{'MESSAGE.NotFoudMesg' | translate}}
     </div>
     <div class="container">
         <table class="table" *ngIf="myPeopleList.length > 0">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">#</th>
+                <th scope="col" (click)="sort('id')">{{'PEOPLE-LIST.id' | translate}}&nbsp;<i class="fa fa-sort"></i></th>
+                <th scope="col" (click)="sort('firstname')">{{'PEOPLE-LIST.Fname' | translate}}&nbsp;<i class="fa fa-sort"></i></th>
+                <th scope="col" (click)="sort('lastname')">{{'PEOPLE-LIST.Lname' | translate}}&nbsp;<i class="fa fa-sort"></i></th>
+                <th scope="col" (click)="sort('email')">{{'PEOPLE-LIST.email' | translate}}&nbsp;<i class="fa fa-sort"></i></th>
+                <th scope="col" >#</th>
             </tr>
             </thead>
             <tbody>
-                <!-- <tr *ngFor="let people of peopleList">
-                    <th scope="row">{{peopleList.indexOf(people)+1}}</th>
-                    <td>{{people.firstname}}</td>
-                    <td>{{people.lastname}}</td>
-                    <td>{{people.phone}}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary">Details</button>
-                        <button type="button" class="btn btn-danger mx-3" (click)='delete(people)'>Delete</button>
-                        <button type="button" class="btn btn-warning">Update</button>
-                    </td>
-                </tr> -->
-            
-                <tr *ngFor="let people of myPeopleList">
-                    <th scope="row">{{myPeopleList.indexOf(people)+1}}</th>
+                <!-- | orderBy : key : reverse| paginate : {itemsPerPage:5,currentPage:p}; -->
+                <tr *ngFor="let people of myPeopleList | orderBy : key : reverse ">
+                    <th scope="row">{{people.id}}</th>
                     <td>{{people.firstname}}</td>
                     <td>{{people.lastname}}</td>
                     <td>{{people.email}}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" (click)="open(people)">Details</button>
-                        <button type="button" class="btn btn-danger mx-3" (click)='delete(people)'>Delete</button>
-                        <button type="button" class="btn btn-warning" [routerLink]="['/update-people',people.id]">Update</button>
+                        <button type="button" class="btn btn-primary" (click)="open(people)">{{'BTN.detailBtn' | translate}}</button>
+                        <button type="button" class="btn btn-danger mx-3" (click)='delete(people)'>{{'BTN.deleteBtn' | translate}}</button>
+                        <button type="button" class="btn btn-warning" [routerLink]="['/update-people',people.id]">{{'BTN.updateBtn' | translate}}</button>
                     </td>
                 </tr>
 
             </tbody>
         </table>
+        
     </div>
+
+    <div class="row justify-content-center">
+        <ul class="nav nav-pills">
+            <li class="nav-item" *ngFor="let p of pages; let i=index">
+                <a href="" class="nav-link" (click)="setPage(i,$event)" [ngClass]="{'active' :i==page}">{{i+1}}</a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <pagination-controls  (pageChange)="p = $event">5</pagination-controls>
+            </div>
+         </div>
+    </div> -->
 </div>
 <app-footer></app-footer>

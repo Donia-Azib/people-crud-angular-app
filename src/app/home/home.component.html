@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 
 <main role="main">
+  <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -18,6 +19,9 @@
               <h1>#ESENDroidClub
                 #YourPresenceIsOurMotivation
                 #Fantastic4</h1>
+                <div class="form-group">
+                  <button class="btn btn-warning btn-lg change-text btn-block" [routerLink]="['/people-list']" >{{'BTN.listBtn' | translate}}</button>
+              </div>
               <!-- <p>Another successful event, another story to tell, , thanks to all the participants , and all the organisation team
                 for making this event GREAT.</p> -->
               <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p> -->

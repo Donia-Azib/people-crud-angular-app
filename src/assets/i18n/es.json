@@ -1,0 +1,38 @@
+{
+    "PEOPLE-LIST" :{
+        
+        "Fname" : "Primer Nombre",
+        "Lname" : "Apellido",
+        "email" : "Correo Electrónico",
+        "phone" : "teléfono",
+        "password" : "contraseña",
+        "Cnfpassword" : "Confirmar contraseña",
+        "id" : "id"
+        
+   }, 
+   "BTN" : {
+    "addBtn" : "Añadir miembro",
+    "detailBtn" : "Details",
+    "updateBtn" : "actualizar",
+    "deleteBtn" : "Eliminar",
+
+    "logoutBtn" : "cerrar sesión",
+    "loginBtn" : "iniciar sesión",
+    "registerBtn" : "Registrarse",
+
+    "backBtn" : "espalda",
+    "closeBtn" : "cerca",
+    "searchBTN" : "Ingrese el nombre para buscar",
+    "listBtn" : "Lista de miembros =>"
+   } ,
+   "TITLE":
+   {
+    "listName" : "Lista de miembros",
+    "memberDetail" : "Detalles del miembro",
+    "updateInfo" : "Actualizar la información del miembro"
+   },
+   "MESSAGE":
+   {
+    "NotFoudMesg":"Ningún miembro encontrado !"       
+   }
+}

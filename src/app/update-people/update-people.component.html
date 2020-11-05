@@ -2,16 +2,16 @@
 <div class="container my-5">
   <div class="row">
     <div class="col">
-      <button class="btn btn-dark my-3" [routerLink]="['/people-list']" >Back</button>
+      <button class="btn btn-dark my-3" [routerLink]="['/people-list']" >{{'BTN.backBtn' | translate}}</button>
       <hr>
-      <h1>Update User Informations</h1>
+      <h1>{{'TITLE.updateInfo' | translate}}</h1>
     </div>
   </div>
     <br>
     <form [formGroup]="myForm" (ngSubmit)="updateUser()">
       <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="firstname">First Name</label>
+            <label for="firstname">{{'PEOPLE-LIST.Fname' | translate}}</label>
             <input formControlName="firstname" type="text" class="form-control" id="firstname" >
             <div *ngIf="firstname.touched && firstname.invalid">
               <small class="form-text text-danger" *ngIf="firstname.errors.required">First name is required <br></small>
@@ -21,7 +21,7 @@
           </div>
       
           <div class="form-group col-md-6">
-              <label for="lastname">Last Name</label>
+              <label for="lastname">{{'PEOPLE-LIST.Lname' | translate}}</label>
               <input formControlName="lastname" type="text" class="form-control" id="lastname">
               <div *ngIf="lastname.touched && lastname.invalid">
                 <small class="form-text text-danger" *ngIf="lastname.errors.required">last name is required <br></small>
@@ -33,7 +33,7 @@
 
       <div class="form-row">
           <div class="form-group col">
-              <label for="exampleInputEmail1">Email address</label>
+              <label for="exampleInputEmail1">{{'PEOPLE-LIST.email' | translate}}</label>
               <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
               <div *ngIf="email.touched && email.invalid">
                 <small class="form-text text-danger" *ngIf="email.errors.required">Email is required <br></small>
@@ -44,7 +44,7 @@
 
       <div class="form-row">
         <div class="form-group col">
-            <label for="phone">Phone</label>
+            <label for="phone">{{'PEOPLE-LIST.phone' | translate}}</label>
             <input formControlName="phone" type="tel" class="form-control" id="phone">
             <div *ngIf="phone.touched && phone.invalid">
               <small class="form-text text-danger" *ngIf="phone.errors.required">phone is required <br></small>
@@ -56,7 +56,7 @@
       
       <div class="form-row">
         <div class="form-group col">
-          <button type="submit" class="btn btn-warning" [disabled]="myForm.invalid">Update</button>
+          <button type="submit" class="btn btn-warning" [disabled]="myForm.invalid">{{'BTN.updateBtn' | translate}}</button>
         </div>
       </div>
       </form>

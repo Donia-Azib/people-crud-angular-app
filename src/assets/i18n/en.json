@@ -1,0 +1,35 @@
+{
+	"BTN": {
+		"addBtn": "Add member",
+		"backBtn": "Back",
+		"deleteBtn": "Delete",
+        "detailBtn": "Details", 
+        "updateBtn": "Update",
+        
+		"loginBtn": "Login",
+		"logoutBtn": "Logout",
+        "registerBtn": "Register",
+        
+        "closeBtn" : "Close",
+        "searchBTN" : "Enter First name to search",
+        "listBtn" : "Member list =ould not find Angular Material core theme. Most Material components may not work as expected. For more info refer to the theming guide: https://mater>"
+	},
+	"PEOPLE-LIST": {
+		"Fname": "First Name",
+		"Lname": "Last Name",
+        "email": "Email",
+        "phone" : "Phone",
+        "password" : "Password",
+        "Cnfpassword" : "Confirm Password",
+        "id" : "id"
+	} ,
+    "TITLE":{
+        "listName" : "Member List",
+        "memberDetail" : "Member Details",
+        "updateInfo" : "Update User Informations"
+    },
+    "MESSAGE":
+    {
+        "NotFoudMesg":"No Member found!"
+    }
+}

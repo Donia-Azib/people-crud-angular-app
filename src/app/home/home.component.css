@@ -11,6 +11,11 @@ h1>p{
 h2>p{
   font-family: 'Montserrat Alternates', sans-serif;
 }
+.change-text{
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-style: unset;
+  font-weight: bold;
+}
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;

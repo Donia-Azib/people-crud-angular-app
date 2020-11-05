@@ -5,6 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AngularModalComponent } from '../angular-modal/angular-modal.component';
 import { User } from '../user';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-people-list',
@@ -12,6 +14,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./people-list.component.css']
 })
 export class PeopleListComponent implements OnInit {
+
+
+  p:number=1;
 
   peopleList=[
     {
@@ -33,15 +38,30 @@ export class PeopleListComponent implements OnInit {
       phone : '16132165',
     }
   ];
+
   myPeopleList=[];
+  firstname:any;
+  private page:number =0;
+  private pages:Array<number>;
+
   constructor(private service:UserService,private modalService: NgbModal
-    ,private toastr: ToastrService) { }
+    ,private toastr: ToastrService,private translator:TranslateService) { }
 
   ngOnInit() {
-    this.service.getAllUser().subscribe(
+    const lang = localStorage.getItem('lang') || 'en';
+    this.translator.use(lang);
+
+    this.getAllMember()
+   
+  }
+
+  getAllMember()
+  {
+    this.service.getAll(this.page).subscribe(
       //2 fonction => result / error
       result=>{
-          this.myPeopleList = result;
+          this.myPeopleList = result['content'];
+          this.pages = new Array(result['totalPages']);
       },
       error=>{
           console.log(error); 
@@ -70,6 +90,34 @@ export class PeopleListComponent implements OnInit {
   open(user:User) {
     const modalRef = this.modalService.open(AngularModalComponent);
     modalRef.componentInstance.user = user;
+  }
+
+
+  search()
+  {
+    if(this.firstname == "")
+      this.ngOnInit();
+    else
+    {
+      this.myPeopleList= this.myPeopleList.filter(res=>
+        {
+            return res.firstname.toLocaleLowerCase().match(this.firstname.toLocaleLowerCase());
+        });
+    }
+  }
+
+  key:String='id';
+  reverse:boolean=false;
+  sort(key)
+  {
+    this.key=key;
+    this.reverse = !this.reverse;
+  }
+
+  setPage(i,event:any){
+    event.preventDefault();
+    this.page=i;
+    this.getAllMember();
   }
 
 }

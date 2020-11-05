@@ -6,10 +6,22 @@
     </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="form-inline my-2 my-lg-0 ml-auto">
+      <select 
+      class="custom-select my-2 my-sm-0" 
+      id="inlineFormCustomSelect" 
+      (change)='changeLang($event.target.value)'
+      >
+        <option value="en" [selected]="lang == 'en'" >English</option>
+        <option value="fr" [selected]="lang == 'fr'" >Frensh</option>
+        <option value="es" [selected]="lang == 'es'" >Espangol</option>
+      </select>
+    </div>
+
     <form class="form-inline my-2 my-lg-0 ml-auto">
-      <button class="btn btn-outline-info my-2 my-sm-0" *ngIf="!isLogged" [routerLink]="['/login']">Login</button>
-      <button class="btn btn-outline-primary mx-3 my-2 my-sm-0" *ngIf="!isLogged" [routerLink]="['/register']">Register</button>
-      <button class="btn btn-outline-dark mx-3 my-2 my-sm-0" *ngIf="isLogged" (click)="logout()">Logout</button>
+      <button class="btn btn-outline-info my-2 my-sm-0" *ngIf="!isLogged" [routerLink]="['/login']">{{'BTN.loginBtn' | translate}}</button>
+      <button class="btn btn-outline-primary mx-3 my-2 my-sm-0" *ngIf="!isLogged" [routerLink]="['/register']">{{'BTN.registerBtn' | translate}}</button>
+      <button class="btn btn-outline-dark mx-3 my-2 my-sm-0" *ngIf="isLogged" (click)="logout()">{{'BTN.logoutBtn' | translate}}</button>
     </form>
   </div>
 </nav>

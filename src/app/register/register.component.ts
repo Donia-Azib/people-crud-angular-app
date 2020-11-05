@@ -3,6 +3,7 @@ import { User } from './../user';
 import { FormGroup ,FormControl,FormBuilder,Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   myForm : FormGroup;
   
   constructor(private fb:FormBuilder,private service:UserService,
-    private router:Router) {
+    private router:Router,private translator:TranslateService) {
     let formControls =
     {
       firstname : new FormControl('',[
@@ -94,6 +95,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit():void {
+    this.translator.use(localStorage.getItem("lang")||'en');
     if(this.service.UserLoggedIn())
       this.router.navigate(['/people-list']);
   }

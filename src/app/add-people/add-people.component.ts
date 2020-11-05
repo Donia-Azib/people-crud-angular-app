@@ -5,6 +5,7 @@ import { User } from '../user';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-people',
@@ -17,7 +18,8 @@ export class AddPeopleComponent implements OnInit {
   fileToUpload: File = null;
 
   constructor(private fb:FormBuilder,private service:UserService,
-    private router:Router,private toastr: ToastrService,private httpclient:HttpClient) {
+    private router:Router,private toastr: ToastrService,private httpclient:HttpClient,
+    private translator:TranslateService) {
     let formControls =
     {
       //first param : default value to display
@@ -46,6 +48,7 @@ export class AddPeopleComponent implements OnInit {
    }
 
   ngOnInit() :void{
+    this.translator.use(localStorage.getItem("lang") || 'en');
   }
 
   //get Functions
@@ -65,15 +68,15 @@ export class AddPeopleComponent implements OnInit {
   {
     return this.myForm.get('phone');
   }
-
+ 
 
   saveUser(){
-    const formdata = new FormData();
-    formdata.append('image',this.fileToUpload,this.fileToUpload.name);
+    // const formdata = new FormData();
+    // formdata.append('image',this.fileToUpload,this.fileToUpload.name);
 
     let data = this.myForm.value;
-// this.fileToUpload.name,this.fileToUpload.type,this.fileToUpload.stream)
-   let user = new User(data.firstname,data.lastname,data.email,null,null,data.phone);
+  // this.fileToUpload.name,this.fileToUpload.type,this.fileToUpload.stream)
+    let user = new User(data.firstname,data.lastname,data.email,null,data.phone);
    this.service.addUser(user).subscribe(
     res=>{
       console.log(res);
